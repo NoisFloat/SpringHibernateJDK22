@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="${mensaje}"></h1>
+<h2 th:text="${saludo}"></h2>
+
+
+<h1>Uso de tabla Usuario</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Mail</th>
+        <th>Password</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Condicional para verificar si 'personas' no está vacío -->
+    <tr th:if="${usuarios != null and !usuarios.isEmpty()}" th:each="usuario : ${usuarios}">
+        <td th:text="${usuario.nombre}">Mostrar Nombre</td>
+        <td th:text="${usuario.apellido}">Mostrar Apellido</td>
+        <td th:text="${usuario.email}">Mostrar Email</td>
+        <td th:text="${usuario.password}">Mostrar Password</td>
+
+    </tr>
+
+    <!-- Mensaje si la lista está vacía -->
+    <tr th:if="${usuarios == null or usuarios.isEmpty()}">
+        <td colspan="4">No hay personas disponibles.</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<h1>Uso de tabla Pelicula</h1>
+<table>
+    <thead>
+    <tr>
+        <th>pelicula_id</th>
+        <th>titulo</th>
+        <th>duracion</th>
+        <th>clasificacion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Condicional para verificar si 'personas' no está vacío -->
+    <tr th:if="${peliculas != null and !peliculas.isEmpty()}" th:each="pelicula : ${peliculas}">
+        <td th:text="${pelicula.getPelicula_id()}">Mostrar Nombre</td>
+        <td th:text="${pelicula.titulo}">Mostrar Apellido</td>
+        <td th:text="${pelicula.duracion}">Mostrar Email</td>
+        <td th:text="${pelicula.clasificacion}">Mostrar Password</td>
+
+    </tr>
+
+    <!-- Mensaje si la lista está vacía -->
+    <tr th:if="${peliculas == null or peliculas.isEmpty()}">
+        <td colspan="4">No hay peliculas disponibles.</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<h1>Uso de tabla Sala</h1>
+<table>
+    <thead>
+    <tr>
+        <th>sala_id</th>
+        <th>num_sala</th>
+        <th>capacidad</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Condicional para verificar si 'personas' no está vacío -->
+    <tr th:if="${salas != null and !salas.isEmpty()}" th:each="sala : ${salas}">
+        <td th:text="${sala.getSala_id()}">Mostrar Nombre</td>
+        <td th:text="${sala.getNum_sala}">Mostrar Apellido</td>
+        <td th:text="${sala.getCapacidad}">Mostrar Email</td>
+
+    </tr>
+
+    <!-- Mensaje si la lista está vacía -->
+    <tr th:if="${salas == null or salas.isEmpty()}">
+        <td colspan="4">No hay salas disponibles.</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<h1>Uso de tabla Funciones</h1>
+<table>
+    <thead>
+    <tr>
+        <th>funcion_id</th>
+        <th>nombre_Pelicula</th>
+        <th>sala_id</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Condicional para verificar si 'personas' no está vacío -->
+    <tr th:if="${funciones != null and !funciones.isEmpty()}" th:each="funcion : ${funciones}">
+        <td th:text="${funcion.getFuncion_id()}">Mostrar Nombre</td>
+        <td th:text="${funcion.getPelicula().getTitulo()}">Mostrar Apellido</td>
+        <td th:text="${funcion.getSala().getSala_id()}">Mostrar Email</td>
+
+    </tr>
+
+    <!-- Mensaje si la lista está vacía -->
+    <tr th:if="${funciones == null or funciones.isEmpty()}">
+        <td colspan="4">No hay Funciones disponibles.</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<h1>Uso de tabla Venta</h1>
+<table>
+    <thead>
+    <tr>
+        <th>venta_id</th>
+        <th>nombre de funcion</th>
+        <th>total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Condicional para verificar si 'personas' no está vacío -->
+    <tr th:if="${ventas != null and !ventas.isEmpty()}" th:each="venta : ${ventas}">
+        <td th:text="${venta.getVenta_id()}">Mostrar Nombre</td>
+        <td th:text="${venta.getFuncion().getPelicula().getTitulo()}">Mostrar Apellido</td>
+        <td th:text="${venta.getTotal()}">Mostrar Email</td>
+
+    </tr>
+
+    <!-- Mensaje si la lista está vacía -->
+    <tr th:if="${ventas == null or ventas.isEmpty()}">
+        <td colspan="4">No hay Ventas disponibles.</td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Uso de tabla Boleto</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Boleto ID</th>
+        <th>Boleto de la Pelicula</th>
+        <th>Numero Asiento</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Condicional para verificar si 'personas' no está vacío -->
+    <tr th:if="${boletos != null and !boletos.isEmpty()}" th:each="boleto : ${boletos}">
+        <td th:text="${boleto.getBoleto_id()}">Mostrar Nombre</td>
+        <td th:text="${boleto.getVenta().getFuncion().getPelicula().getTitulo()}">Mostrar Apellido</td>
+        <td th:text="${boleto.getAsiento_numero()}">Mostrar Email</td>
+
+    </tr>
+
+    <!-- Mensaje si la lista está vacía -->
+    <tr th:if="${boletos == null or boletos.isEmpty()}">
+        <td colspan="4">No hay Boletos disponibles.</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
