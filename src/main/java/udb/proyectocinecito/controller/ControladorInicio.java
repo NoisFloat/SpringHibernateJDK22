@@ -1,5 +1,7 @@
 package udb.proyectocinecito.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +42,15 @@ public class ControladorInicio {
         model.addAttribute("ventas", ventas);
         model.addAttribute("boletos", boletos);
 
+        return "index"; //Se encuenta en resources/templates/index.html
+    }
+    @GetMapping("/borrarFila3")
+    public String borrarFila3(HttpServletRequest request, HttpServletResponse response){
+        String mensaje = "Hola mundo con Rodrigo";
+        peliculaDAO.deleteById(3);
+        //Esto es un controlador de tipo Spring MVC
+        response.setContentType("text/html");
+        request.setAttribute("mensaje", mensaje);
         return "index"; //Se encuenta en resources/templates/index.html
     }
 
