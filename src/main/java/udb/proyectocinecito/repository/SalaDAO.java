@@ -1,7 +1,7 @@
-package udb.proyectocinecito.dao;
+package udb.proyectocinecito.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import udb.proyectocinecito.model.Sala;
+import udb.proyectocinecito.entity.Sala;
 
 public interface SalaDAO extends CrudRepository<Sala,Integer> {
     //Terminado

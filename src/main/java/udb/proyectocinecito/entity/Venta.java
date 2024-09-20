@@ -1,4 +1,4 @@
-package udb.proyectocinecito.model;
+package udb.proyectocinecito.entity;
 
 import jakarta.persistence.*;
 
