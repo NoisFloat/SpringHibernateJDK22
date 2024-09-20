@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import udb.proyectocinecito.entity.Usuario;
 import udb.proyectocinecito.services.*;
 
 
@@ -41,6 +44,80 @@ public class ControladorInicio {
 
         return "index"; //Se encuenta en resources/templates/index.html
     }
+
+    // Este método maneja las solicitudes GET a la ruta "/agregar".
+    @GetMapping("/agregar")
+    public String agregar(Usuario usuario) {
+        // Spring automáticamente inyecta un objeto Usuario vacío en este método.
+        // Esto permite que se pueda usar en la vista para crear un nuevo usuario.
+        return "modificar"; // Retorna la vista "modificar" para que se muestre el formulario.
+    }
+
+    // Este método maneja las solicitudes POST a la ruta "/guardar".
+    @PostMapping("/guardar")
+    public String guardar(Usuario usuario) {
+        // Spring inyecta el objeto Usuario con los datos enviados desde el formulario.
+        // Aquí se llama al servicio para guardar el nuevo usuario en la base de datos.
+        usuarioService.guardarUsuario(usuario);
+
+        // Luego de guardar, se redirige a la raíz de la aplicación ("/").
+        return "redirect:/"; // Esto asegura que no se vuelva a enviar el formulario si se refresca la página.
+    }
+
+    /*
+
+    // Este método maneja las solicitudes GET a la ruta "/editar/{usuario_id}".
+    @GetMapping("/editar/{usuario_id}")
+    public String editar(Usuario usuario, Model model, @PathVariable int usuario_id) {
+        // Se utiliza el servicio para encontrar al usuario basado en el ID que se pasa en la URL.
+        usuario.setUsuarioId(usuario_id);
+        usuario = usuarioService.encontrarUsuario(usuario);
+
+        // Se añade el objeto usuario al modelo, para que esté disponible en la vista.
+        model.addAttribute("usuario", usuario);
+
+        // Retorna la vista "modificar", donde se mostrará el formulario con los datos del usuario.
+        return "modificar";
+    }
+
+
+     */
+
+
+    // Este método maneja las solicitudes GET a la ruta "/editar/{usuario_id}".
+    @GetMapping("/editar/{usuarioId}")
+    public String editar(Usuario usuario, Model model) {
+        // Se utiliza el servicio para encontrar al usuario basado en el ID que se pasa en la URL.
+
+        usuario = usuarioService.encontrarUsuario(usuario);
+
+        // Se añade el objeto usuario al modelo, para que esté disponible en la vista.
+        model.addAttribute("usuario", usuario);
+
+        // Retorna la vista "modificar", donde se mostrará el formulario con los datos del usuario.
+        return "modificar";
+    }
+
+
+    // Este método maneja las solicitudes GET a la ruta "/eliminar/{usuario_id}".
+    @GetMapping("/eliminar/{usuario_id}")
+    public String eliminar(Usuario usuario, Model model, @PathVariable int usuario_id) {
+        // Se utiliza el servicio para encontrar al usuario basado en el ID que se pasa en la URL.
+        // Aquí se está configurando el ID del usuario a eliminar.
+        usuario.setUsuarioId(usuario_id);
+
+        // Llama al servicio para eliminar el usuario correspondiente al ID proporcionado.
+        usuarioService.eliminarUsuario(usuario);
+
+        // Se añade el objeto usuario al modelo, para que esté disponible en la vista.
+        // Este paso es opcional en este contexto, ya que estamos redirigiendo a otra vista.
+        // model.addAttribute("usuario", usuario);
+
+        // Retorna la vista "index", lo que indica que el usuario ha sido eliminado.
+        return "redirect:/";
+    }
+
+
     /*
 
     @GetMapping("/borrarFila3")

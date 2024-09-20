@@ -3,6 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        /* Estilos para la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        /* Estilos para las celdas de la tabla */
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        /* Estilo para los encabezados */
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* Estilo para las filas alternas */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Estilo para las filas al pasar el mouse */
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
 </head>
 <body>
 <h1 th:text="${mensaje}"></h1>
@@ -11,12 +43,15 @@
 
 <h1>Uso de tabla Usuario</h1>
 <table>
+    <a th:href="@{/agregar}">Crear Usuario</a>
     <thead>
     <tr>
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Mail</th>
         <th>Password</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
     </tr>
     </thead>
     <tbody>
@@ -26,6 +61,9 @@
         <td th:text="${usuario.apellido}">Mostrar Apellido</td>
         <td th:text="${usuario.email}">Mostrar Email</td>
         <td th:text="${usuario.password}">Mostrar Password</td>
+        <td><a th:href="@{/editar/{id}(id=${usuario.usuarioId})}" th:text="'Editar'"></a></td>
+        <td><a th:href="@{/eliminar/{id}(id=${usuario.usuarioId})}" th:text="'Eliminar'"></a></td>
+
 
     </tr>
 

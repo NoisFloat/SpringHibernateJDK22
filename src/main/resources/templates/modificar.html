@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Datos del Usuario</title>
 </head>
 <body>
-$END$
+<h1 th:text="${usuario.usuarioId != null} ? 'Editar Usuario' : 'Crear Usuario'"></h1>
+<a th:href="@{/}">Regresar al Inicio</a>
+
+<form th:action="@{/guardar}" method="POST" th:object="${usuario}">
+    <div>
+        <input type="hidden" id="usuario_id" name="username" th:field="*{usuarioId}" required />
+    </div>
+    <div>
+        <label for="username">Nombre de Usuario:</label>
+        <input type="text" id="username" name="username" th:field="*{username}" required />
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:field="*{email}" required />
+    </div>
+    <div>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" th:field="*{password}" required />
+    </div>
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required />
+    </div>
+    <div>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" th:field="*{apellido}" required />
+    </div>
+    <div>
+        <label for="rol">Rol:</label>
+        <select id="rol" name="rol" th:field="*{rol}" required>
+            <option value="USER">Usuario</option>
+            <option value="ADMIN">Administrador</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Guardar</button>
+    </div>
+</form>
+
+<!-- Mensaje de éxito o error -->
+<div th:if="${mensaje}">
+    <p th:text="${mensaje}"></p>
+</div>
 </body>
 </html>

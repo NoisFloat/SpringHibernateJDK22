@@ -10,7 +10,7 @@ import udb.proyectocinecito.services.UsuarioService;
 import java.util.List;
 //Esto se ocupara para que el contenedor principal de Spring pueda reconocer a Service, y que pueda ser Injectado como DAO
 @Service
-public class PersonaServiceImpl implements UsuarioService {
+public class UsuarioServiceImpl implements UsuarioService {
     //Los servicios como tal, son para no modificar la persistencia de DAO, cuando no es necesario, lo que separa
     //el codigo y lo hace mas flexible a cambios, todos utilizando el mismo DAO
 
