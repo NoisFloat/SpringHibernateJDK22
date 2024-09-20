@@ -3,7 +3,6 @@ package udb.proyectocinecito.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import udb.proyectocinecito.entity.Funcion;
-import udb.proyectocinecito.entity.Usuario;
 import udb.proyectocinecito.repository.FuncionDAO;
 import udb.proyectocinecito.services.FuncionService;
 
@@ -30,7 +29,7 @@ public class FuncionServiceImpl implements FuncionService {
     }
 
     @Override
-    public Funcion encontrarFuncion(Usuario usuario) {
-        return funcionDAO.findById(usuario.getUsuarioId()).orElse(null);
+    public Funcion encontrarFuncion(Funcion funcion) {
+        return funcionDAO.findById(funcion.getFuncion_id()).orElse(null);
     }
 }

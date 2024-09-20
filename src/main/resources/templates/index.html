@@ -50,7 +50,7 @@
     <tbody>
     <!-- Condicional para verificar si 'personas' no está vacío -->
     <tr th:if="${peliculas != null and !peliculas.isEmpty()}" th:each="pelicula : ${peliculas}">
-        <td th:text="${pelicula.getPelicula_id()}">Mostrar Nombre</td>
+        <td th:text="${pelicula.pelicula_id}">Mostrar Nombre</td>
         <td th:text="${pelicula.titulo}">Mostrar Apellido</td>
         <td th:text="${pelicula.duracion}">Mostrar Email</td>
         <td th:text="${pelicula.clasificacion}">Mostrar Password</td>
@@ -77,7 +77,7 @@
     <tbody>
     <!-- Condicional para verificar si 'personas' no está vacío -->
     <tr th:if="${salas != null and !salas.isEmpty()}" th:each="sala : ${salas}">
-        <td th:text="${sala.getSala_id()}">Mostrar Nombre</td>
+        <td th:text="${sala.getSala_id}">Mostrar Nombre</td>
         <td th:text="${sala.getNum_sala}">Mostrar Apellido</td>
         <td th:text="${sala.getCapacidad}">Mostrar Email</td>
 
