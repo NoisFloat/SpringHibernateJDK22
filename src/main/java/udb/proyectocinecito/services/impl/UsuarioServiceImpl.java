@@ -1,4 +1,5 @@
 package udb.proyectocinecito.services.impl;
+import static udb.proyectocinecito.util.EncriptarPassword.encriptarPassword;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import udb.proyectocinecito.entity.Usuario;
 import udb.proyectocinecito.repository.UsuarioDAO;
 import udb.proyectocinecito.services.UsuarioService;
+import udb.proyectocinecito.util.EncriptarPassword;
 
 import java.util.List;
 //Esto se ocupara para que el contenedor principal de Spring pueda reconocer a Service, y que pueda ser Injectado como DAO
@@ -28,6 +30,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional(readOnly = false)
     public void guardarUsuario(Usuario usuario) {
+        String passwordEncriptado = EncriptarPassword.encriptarPassword(usuario.getPassword());
+        usuario.setPassword(passwordEncriptado);
         usuarioDAO.save(usuario);
     }
 
