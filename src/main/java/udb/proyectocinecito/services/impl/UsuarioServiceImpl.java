@@ -40,6 +40,8 @@ public class PersonaServiceImpl implements UsuarioService {
     @Override
     @Transactional(readOnly = true)
     public Usuario encontrarUsuario(Usuario usuario) {
-        return usuarioDAO.findById(usuario.getUsuarioId()).orElse(null);
+        Usuario user = usuarioDAO.findById(usuario.getUsuarioId()).orElse(null);
+        System.out.println(user.toString());
+        return user;
     }
 }
