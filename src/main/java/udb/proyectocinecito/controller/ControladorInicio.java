@@ -3,11 +3,13 @@ package udb.proyectocinecito.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import udb.proyectocinecito.entity.Usuario;
 import udb.proyectocinecito.services.*;
+import jakarta.validation.*;
 
 
 @Controller
@@ -53,16 +55,16 @@ public class ControladorInicio {
         return "modificar"; // Retorna la vista "modificar" para que se muestre el formulario.
     }
 
-    // Este método maneja las solicitudes POST a la ruta "/guardar".
     @PostMapping("/guardar")
-    public String guardar(Usuario usuario) {
-        // Spring inyecta el objeto Usuario con los datos enviados desde el formulario.
-        // Aquí se llama al servicio para guardar el nuevo usuario en la base de datos.
+    public String guardar(@Valid Usuario usuario, BindingResult result) {
+        if (result.hasErrors()) {
+            System.out.println("Error de validacion");
+            return "modificar"; // Retorna a la vista con errores
+        }
         usuarioService.guardarUsuario(usuario);
-
-        // Luego de guardar, se redirige a la raíz de la aplicación ("/").
-        return "redirect:/"; // Esto asegura que no se vuelva a enviar el formulario si se refresca la página.
+        return "redirect:/"; // O donde desees redirigir después de guardar
     }
+
 
     /*
 

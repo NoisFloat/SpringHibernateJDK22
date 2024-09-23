@@ -15,22 +15,27 @@
     <div>
         <label for="username">Nombre de Usuario:</label>
         <input type="text" id="username" name="username" th:field="*{username}" required />
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error en nombre</span>
     </div>
     <div>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" th:field="*{email}" required />
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error en nombre</span>
     </div>
     <div>
         <label for="password">Contraseña:</label>
         <input type="password" id="password" name="password" th:field="*{password}" required />
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error en nombre</span>
     </div>
     <div>
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required />
+        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error en nombre</span>
     </div>
     <div>
         <label for="apellido">Apellido:</label>
         <input type="text" id="apellido" name="apellido" th:field="*{apellido}" required />
+        <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error en nombre</span>
     </div>
     <div>
         <label for="rol">Rol:</label>
@@ -38,6 +43,7 @@
             <option value="USER">Usuario</option>
             <option value="ADMIN">Administrador</option>
         </select>
+        <span th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}">Error en nombre</span>
     </div>
     <div>
         <button type="submit">Guardar</button>
