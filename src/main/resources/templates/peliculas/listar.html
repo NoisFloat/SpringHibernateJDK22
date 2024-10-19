@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Lista de Películas</title>
+    <meta charset="UTF-8">
+    <title>Lista de Películas</title>
 </head>
 <body>
 <h1>Lista de Películas</h1>
-<a th:href="@{/peliculas/agregar}">Agregar Nueva Película</a>
+<a th:href="@{/pelicula/agregar}">Agregar Nueva Película</a>
 <table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Título</th>
-    <th>Duración</th>
-    <th>Clasificación</th>
-    <th>Descripción</th>
-    <th>Fecha de Estreno</th>
-    <th>Acciones</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="pelicula : ${peliculas}">
-    <td th:text="${pelicula.pelicula_id}"></td>
-    <td th:text="${pelicula.titulo}"></td>
-    <td th:text="${pelicula.duracion}"></td>
-    <td th:text="${pelicula.clasificacion}"></td>
-    <td th:text="${pelicula.descripcion}"></td>
-    <td th:text="${#dates.format(pelicula.fecha_estreno, 'yyyy-MM-dd')}"></td>
-    <td>
-      <a th:href="@{/peliculas/editar/{peliculaId}(peliculaId=${pelicula.pelicula_id})}">Editar</a>
-      <a th:href="@{/peliculas/eliminar/{peliculaId}(peliculaId=${pelicula.pelicula_id})}" onclick="return confirm('¿Estás seguro de eliminar esta película?');">Eliminar</a>
-    </td>
-  </tr>
-  </tbody>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Duración</th>
+        <th>Clasificación</th>
+        <th>Descripción</th>
+        <th>Fecha de Estreno</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pelicula : ${pelicula}">
+        <td th:text="${pelicula.pelicula_id}"></td>
+        <td th:text="${pelicula.titulo}"></td>
+        <td th:text="${pelicula.duracion}"></td>
+        <td th:text="${pelicula.clasificacion}"></td>
+        <td th:text="${pelicula.descripcion}"></td>
+        <td th:text="${#dates.format(pelicula.fecha_estreno, 'yyyy-MM-dd')}"></td>
+        <td>
+            <a th:href="@{/peliculas/editar/{peliculaId}(peliculaId=${pelicula.pelicula_id})}">Editar</a>
+            <a th:href="@{/peliculas/eliminar/{peliculaId}(peliculaId=${pelicula.pelicula_id})}" onclick="return confirm('¿Estás seguro de eliminar esta película?');">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
 </table>
 </body>
 </html>
