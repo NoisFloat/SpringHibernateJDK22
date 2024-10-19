@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Películas</title>
+</head>
+<body>
+<h1>Lista de Películas</h1>
+<a th:href="@{/funcion/agregar}">Agregar Nueva Funcion</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Pelicula</th>
+        <th>Sala</th>
+        <th>Fecha de funcion</th>
+        <th>Hora de funcion</th>
+        <th>Precio</th>
+        <th>Asientos disponibles</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="funcion : ${funcion}">
+        <td th:text="${funcion.funcion_id}"></td>
+        <td th:text="${funcion.pelicula}"></td>
+        <td th:text="${#dates.format(funcion.fecha_estreno, 'yyyy-MM-dd')}"></td>
+        <td th:text="${#dates.format(funcion.hora_funcion, 'HH:mm')}"></td>
+        <td th:text="${funcion.precio}"></td>
+        <td th:text="${funcion.asientos_disponibles}"></td>
+        <td>
+            <a th:href="@{/peliculas/editar/{peliculaId}(peliculaId=${pelicula.pelicula_id})}">Editar</a>
+            <a th:href="@{/peliculas/eliminar/{peliculaId}(peliculaId=${pelicula.pelicula_id})}" onclick="return confirm('¿Estás seguro de eliminar esta película?');">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

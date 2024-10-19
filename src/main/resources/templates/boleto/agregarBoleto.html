@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario boleto</title>
+</head>
+<body>
+<h1>Formulario boleto</h1>
+<form th:action="@{/boleto}" th:object="${boleto}" method="post">
+    <input type="hidden" th:field="*{boleto_id}"/>
+    <div>
+        <label>numero de asiento:</label>
+        <input type="text" th:field="*{asiento_numero}" />
+    </div>
+
+    <button type="submit">Guardar</button>
+</form>
+<a th:href="@{/boleto}">Volver</a>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario funcion</title>
+</head>
+<body>
+<h1>Formulario funcion</h1>
+<form th:action="@{/funcion}" th:object="${funcion}" method="post">
+    <input type="hidden" th:field="*{funcion_id}"/>
+    <div>
+        <label>Pelicula:</label>
+        <input type="text" th:field="*{pelicula}" />
+    </div>
+
+    <div>
+        <label>Sala:</label>
+        <input type="text" th:field="*{sala}" step="0.01"/>
+    </div>
+
+    <div>
+        <label>Fecha de funcion:</label>
+        <input type="date" th:field="*{fecha_estreno}" step="0.01"/>
+    </div>
+
+    <div>
+        <label>Hora de funcion:</label>
+        <input type="date" th:field="*{hora_funcion}" step="0.01"/>
+    </div>
+
+    <div>
+        <label>Precio:</label>
+        <input type="number" th:field="*{precio}" step="0.01"/>
+    </div>
+
+    <div>
+        <label>Asientos disponibles:</label>
+        <input type="number" th:field="*{asientos_disponibles}" step="0.01"/>
+    </div>
+
+    <button type="submit">Guardar</button>
+</form>
+<a th:href="@{/boleto}">Volver</a>
+</body>
+</html>

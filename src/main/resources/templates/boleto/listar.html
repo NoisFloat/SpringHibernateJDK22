@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Boletos</title>
+</head>
+<body>
+<h1>Lista de boletos</h1>
+<a th:href="@{/boleto/agregar}">Agregar Nuevo Boleto</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Venta</th>
+        <th>Numero de asiento</th>
+    </tr>
+    <tr th:each="boleto : ${boleto}">
+        <td th:text="${boleto.id}"></td>
+        <td th:text="${boleto.venta}"></td>
+        <td th:text="${boleto.asiento_numero}"></td>
+        <td>
+            <a th:href="@{/boleto/editar/{id}(id=${boleto.boleto_id})}">Editar</a>
+            <a th:href="@{/boleto/eliminar/{id}(id=${boleto.boleto_id})}">Eliminar</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

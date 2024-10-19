@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario sala</title>
+</head>
+<body>
+<h1>Formulario sala</h1>
+<form th:action="@{/sala}" th:object="${sala}" method="post">
+    <input type="hidden" th:field="*{sala_id}"/>
+    <div>
+        <label>Numero de sala:</label>
+        <input type="text" th:field="*{num_sala}" />
+    </div>
+
+    <div>
+        <label>Numero de capacidad:</label>
+        <input type="text" th:field="*{capacidad}" step="0.01"/>
+    </div>
+
+
+    <button type="submit">Guardar</button>
+</form>
+<a th:href="@{/sala}">Volver</a>
+</body>
+</html>
