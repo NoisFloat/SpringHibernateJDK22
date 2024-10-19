@@ -1,7 +1,6 @@
 package udb.proyectocinecito.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -15,34 +14,21 @@ public class Usuario implements Serializable {
     @Column(name = "usuario_id")
     private Integer usuarioId;
 
-    @NotEmpty(message = "Username no Valido, tiene que tener mas de 4 caracteres.")
-    @NotBlank(message = "El email no puede estar vacío")
-    @Size(min = 4,message = "Username muy corto, debe de tener mas de 4 caracteres")
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Email(message = "Email no Valido")
-    @NotBlank(message = "El email no puede estar vacío")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @NotBlank(message = "La contraseña no puede estar vacía")
-    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     @Column(name = "password", nullable = false)
     private String password;
 
-    @NotBlank(message = "El nombre no puede estar vacío")
-    @Size(min = 3, message = "El nombre debe tener al menos 3 caracteres")
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @NotBlank(message = "El apellido no puede estar vacío")
-    @Size(min = 3, message = "El apellido debe tener al menos 3 caracteres")
     @Column(name = "apellido", nullable = false)
     private String apellido;
 
-    @NotBlank(message = "El rol no puede estar vacio")
-    @Size(min = 3, message = "El rol debe de tener al menos 3 Caracteres")
     @Column(name = "rol", nullable = false)
     private String rol;
 

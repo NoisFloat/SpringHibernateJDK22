@@ -3,13 +3,11 @@ package udb.proyectocinecito.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import udb.proyectocinecito.entity.Usuario;
 import udb.proyectocinecito.services.*;
-import jakarta.validation.*;
 
 
 @Controller
@@ -55,35 +53,17 @@ public class ControladorInicio {
         return "modificar"; // Retorna la vista "modificar" para que se muestre el formulario.
     }
 
+    // Este método maneja las solicitudes POST a la ruta "/guardar".
     @PostMapping("/guardar")
-    public String guardar(@Valid Usuario usuario, BindingResult result) {
-        if (result.hasErrors()) {
-            System.out.println("Error de validacion");
-            return "modificar"; // Retorna a la vista con errores
-        }
+    public String guardar(Usuario usuario) {
+        // Spring inyecta el objeto Usuario con los datos enviados desde el formulario.
+        // Aquí se llama al servicio para guardar el nuevo usuario en la base de datos.
         usuarioService.guardarUsuario(usuario);
-        return "redirect:/"; // O donde desees redirigir después de guardar
+
+        // Luego de guardar, se redirige a la raíz de la aplicación ("/").
+        return "redirect:/"; // Esto asegura que no se vuelva a enviar el formulario si se refresca la página.
     }
 
-
-    /*
-
-    // Este método maneja las solicitudes GET a la ruta "/editar/{usuario_id}".
-    @GetMapping("/editar/{usuario_id}")
-    public String editar(Usuario usuario, Model model, @PathVariable int usuario_id) {
-        // Se utiliza el servicio para encontrar al usuario basado en el ID que se pasa en la URL.
-        usuario.setUsuarioId(usuario_id);
-        usuario = usuarioService.encontrarUsuario(usuario);
-
-        // Se añade el objeto usuario al modelo, para que esté disponible en la vista.
-        model.addAttribute("usuario", usuario);
-
-        // Retorna la vista "modificar", donde se mostrará el formulario con los datos del usuario.
-        return "modificar";
-    }
-
-
-     */
 
 
     // Este método maneja las solicitudes GET a la ruta "/editar/{usuario_id}".
@@ -118,6 +98,7 @@ public class ControladorInicio {
         // Retorna la vista "index", lo que indica que el usuario ha sido eliminado.
         return "redirect:/";
     }
+
 
 
     /*
